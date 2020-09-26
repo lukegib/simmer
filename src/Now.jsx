@@ -2,8 +2,11 @@ import React from 'react';
 
 import styles from './Info.module.css';
 
-const Now = ({ data }) => {
+const Now = ({ timezone, data }) => {
     console.log(data);
+
+    const sunrise = new Date((data.sunrise + timezone) * 1000);
+    const sunset = new Date((data.sunset + timezone) * 1000);
 
     return (
         <div className={styles.weatherDataList}>
@@ -32,11 +35,15 @@ const Now = ({ data }) => {
             </div>
             <div className={styles.row}>
                 <div className={styles.heading}>Sunrise</div>
-                <div className={styles.data}>05:15</div>
+                <div className={styles.data}>
+                    {`${sunrise.getUTCHours()}:${sunrise.getUTCMinutes()}`}
+                </div>
             </div>
             <div className={styles.row}>
                 <div className={styles.heading}>Sunset</div>
-                <div className={styles.data}>18:24</div>
+                <div className={styles.data}>
+                    {`${sunset.getUTCHours()}:${sunset.getUTCMinutes()}`}
+                </div>
             </div>
         </div>
     );

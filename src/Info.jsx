@@ -15,7 +15,7 @@ const Info = ({ timezone, current, hourly, daily }) => {
                 infinite={false}
                 slidesToShow={1}
             >
-                <Now data={current} />
+                <Now timezone={timezone} data={current} />
                 <Hourly timezone={timezone} data={hourly} />
                 <Daily timezone={timezone} data={daily} />
             </Slider>
