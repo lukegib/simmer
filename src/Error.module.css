@@ -1,0 +1,31 @@
+.errorContainer {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.heading {
+}
+
+.heading h1 {
+    font-size: 72px;
+    margin: 20px 0;
+}
+
+.heading h2 {
+    font-size: 24px;
+}
+
+.penguin {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.penguin img {
+    width: 100%;
+}

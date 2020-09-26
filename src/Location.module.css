@@ -1,0 +1,49 @@
+.locationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+}
+
+.location {
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.locationInput {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.locationInput input {
+    border: none;
+    font-size: 18px;
+    padding: 4px;
+    color: white;
+    background: none;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.locationInput input:focus {
+    outline: none;
+}
+
+.locationInput input:focus + .underline {
+    opacity: 100%;
+}
+
+.underline {
+    height: 3px;
+    border-radius: 10px;
+    width: 50%;
+    min-width: 10ch;
+    max-width: 80%;
+    background-color: white;
+    opacity: 25%;
+    transition: opacity ease 0.3s;
+    margin: 0 auto;
+}

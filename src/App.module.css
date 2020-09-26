@@ -1,0 +1,17 @@
+.app_container {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    margin: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    transition: background 1s linear;
+}
+
+.loadingScreen {
+    display: flex;
+    justify-content: center;
+}
+
+.loadingScreen img {
+    animation: spin 4s linear infinite;
+}

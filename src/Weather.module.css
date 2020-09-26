@@ -1,0 +1,44 @@
+.weatherContainer {
+    margin-top: 15px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+}
+
+.weatherIcon,
+.temp {
+    text-align: center;
+}
+
+.weatherIcon {
+    width: 45%;
+}
+.weatherIcon img {
+    width: 115px;
+}
+
+.temp {
+    width: 45%;
+}
+
+.degrees {
+    font-size: 96px;
+    font-weight: bold;
+}
+
+.unit {
+    font-size: 24px;
+}
+
+.title {
+    font-size: 24px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+}

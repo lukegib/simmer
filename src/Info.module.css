@@ -1,0 +1,114 @@
+.weatherDataList {
+    width: 100%;
+    display: grid;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 0px 40px;
+    flex-shrink: 0;
+    scroll-padding: 0;
+    scroll-snap-align: center;
+    height: 53vh;
+}
+
+.sliderContainer {
+    /*height: 55vh;*/
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 30px;
+}
+
+.rowHeading {
+    display: flex;
+    justify-content: center;
+    margin: 17px 0px;
+}
+
+.heading {
+    font-weight: 300;
+}
+
+.data {
+    font-weight: 600;
+    text-align: right;
+}
+
+.icon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 5px;
+    align-items: center;
+    justify-items: center;
+}
+
+.icon img {
+    width: 24px;
+}
+
+.direction {
+    font-size: 16px;
+}
+
+/* only for hourly */
+.weatherData {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 0px 40px;
+    flex-shrink: 0;
+    scroll-padding: 0;
+    scroll-snap-align: center;
+}
+
+.hourlyList {
+    width: 42%;
+}
+
+.listContent {
+    max-height: 340px;
+    overflow: scroll;
+}
+
+.listContent .row:first-child {
+    margin-top: 5px;
+}
+
+.tableHeading {
+    text-align: center;
+    font-weight: 300;
+    padding-bottom: 10px;
+}
+
+.hourItem {
+    width: 100%;
+    margin: 17px 0px; /* was 22px for Now section */
+    min-height: 30px;
+    font-weight: 300;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    justify-items: center;
+    align-items: center;
+}
+
+.hourItem:first-child {
+    margin-top: 5px;
+}
+
+.hourItem div {
+    width: 24px;
+    text-align: center;
+}
+
+.temp {
+    font-weight: bold;
+}
+
+.hourItem img {
+    width: 24px;
+}
