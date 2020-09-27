@@ -3,6 +3,8 @@ import React from 'react';
 import styles from './Error.module.css';
 import penguin from './assets/penguin.png';
 
+/* TODO: Fix this so that it displays the message and code */
+
 const Error = ({ code }) => {
     return (
         <div className={styles.errorContainer}>

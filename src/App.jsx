@@ -6,6 +6,8 @@ import Loading from './Loading';
 import Error from './Error';
 import styles from './App.module.css';
 
+/* TODO: Find out a suitable filing system */
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -50,6 +52,10 @@ class App extends React.Component {
         this.getWeather();
     }
 
+    /* TODO: break this function up */
+
+    /* TODO: Determine a way to catch the errors */
+
     async getWeather() {
         const apiKey = '46cdd346f210fb124c900b5979411685';
         const googleApiKey = 'pk.1d549a3ebb241d6d4a4c19e14848a250';
@@ -57,26 +63,22 @@ class App extends React.Component {
 
         this.setState({ isLoading: true });
 
-        try {
-            const response2 = await fetch(
-                `https://eu1.locationiq.com/v1/search.php?key=${googleApiKey}&format=json&q=${this.state.location}`
-            );
+        const response2 = await fetch(
+            `https://eu1.locationiq.com/v1/search.php?key=${googleApiKey}&format=json&q=${this.state.location}`
+        );
 
-            const data2 = await response2.json();
+        const data2 = await response2.json();
 
-            console.log(data2.cod);
+        console.log(data2.cod);
 
-            this.setState(() => {
-                return {
-                    coords: {
-                        lat: data2[0].lat,
-                        lon: data2[0].lon,
-                    },
-                };
-            });
-        } catch (err) {
-            console.log('oh hey we hit an error');
-        }
+        this.setState(() => {
+            return {
+                coords: {
+                    lat: data2[0].lat,
+                    lon: data2[0].lon,
+                },
+            };
+        });
 
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.coords.lat}&lon=${this.state.coords.lon}&exclude=minutely&appid=${apiKey}&units=${units}`
@@ -96,7 +98,6 @@ class App extends React.Component {
                         temp: Math.floor(data.current.temp),
                         type: data.current.weather[0].main,
                         icon_code: data.current.weather[0].icon,
-                        // icon_code: '01n',
                     },
                     current: {
                         clouds: data.current.clouds,
@@ -110,12 +111,14 @@ class App extends React.Component {
                         sunset: data.current.sunset,
                     },
                     daily: data.daily.slice(1, 8),
-                    hourly: data.hourly.slice(0, 24),
+                    hourly: data.hourly.slice(1, 25),
                 },
                 isLoading: false,
             };
         });
     }
+
+    /* TODO: fix my prettier extension so it works with eslint on switch */
 
     setBackground(icon) {
         let background = '';
@@ -125,8 +128,7 @@ class App extends React.Component {
                 background = '#2FB0E8';
                 break;
             case '01n':
-                background =
-                    'url("https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")';
+                background = 'black';
                 break;
             case '02d':
                 background = '#50c3f4';
@@ -154,10 +156,6 @@ class App extends React.Component {
                 break;
         }
 
-        console.log(
-            `background is being set to: ${background} because icon code is ${icon}`
-        );
-
         this.setState({ background });
     }
 
@@ -166,9 +164,10 @@ class App extends React.Component {
     }
 
     handleBlur() {
-        // call weather API here
         this.getWeather();
     }
+
+    /* TODO: Find out what this eslint errors means */
 
     degreesToText(degrees) {
         let val = degrees / 22.5 + 0.5;
@@ -204,6 +203,13 @@ class App extends React.Component {
             isLoading,
         } = this.state;
 
+        /* TODO: 
+            ### Show error page is anything comes up
+            ### Move Weather and Info into a component
+            ### Rename components
+        */
+
+        //
         // error code
         // 400 - city name missing / invalid
         // 403 - access restricted

@@ -10,7 +10,7 @@ const Info = ({ timezone, current, hourly, daily }) => {
     return (
         <div className={styles.sliderContainer}>
             <Slider
-                dots={true}
+                dots={true} // TODO:
                 arrows={false}
                 infinite={false}
                 slidesToShow={1}

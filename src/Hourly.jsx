@@ -3,24 +3,6 @@ import React from 'react';
 import Icon from './Icon';
 import styles from './Info.module.css';
 
-const failedVersion = (
-    <div className={styles.row} key="">
-        <div className={styles.data}>
-            <div className={styles.icon}>
-                <Icon code="01n" />
-                <div className="temp">0</div>
-            </div>
-        </div>
-        <div className={styles.heading}>3</div>
-        <div className={styles.data}>
-            <div className={styles.icon}>
-                <Icon type="01d" />
-                <div className="temp">21</div>
-            </div>
-        </div>
-    </div>
-);
-
 const Hourly = ({ timezone, data }) => {
     const day = new Date().getDay();
     let today = [];

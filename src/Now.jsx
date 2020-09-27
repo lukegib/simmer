@@ -1,10 +1,9 @@
 import React from 'react';
-
 import styles from './Info.module.css';
 
-const Now = ({ timezone, data }) => {
-    console.log(data);
+// TODO: clean this up
 
+const Now = ({ timezone, data }) => {
     const sunrise = new Date((data.sunrise + timezone) * 1000);
     const sunset = new Date((data.sunset + timezone) * 1000);
 
@@ -36,13 +35,21 @@ const Now = ({ timezone, data }) => {
             <div className={styles.row}>
                 <div className={styles.heading}>Sunrise</div>
                 <div className={styles.data}>
-                    {`${sunrise.getUTCHours()}:${sunrise.getUTCMinutes()}`}
+                    {`${sunrise.getUTCHours()}:${
+                        sunrise.getUTCMinutes() > 9
+                            ? sunrise.getUTCMinutes()
+                            : '0' + sunrise.getUTCMinutes()
+                    }`}
                 </div>
             </div>
             <div className={styles.row}>
                 <div className={styles.heading}>Sunset</div>
                 <div className={styles.data}>
-                    {`${sunset.getUTCHours()}:${sunset.getUTCMinutes()}`}
+                    {`${sunset.getUTCHours()}:${
+                        sunset.getUTCMinutes() > 9
+                            ? sunset.getUTCMinutes()
+                            : '0' + sunset.getUTCMinutes()
+                    }`}
                 </div>
             </div>
         </div>

@@ -3,9 +3,9 @@ import React from 'react';
 import Icon from './Icon';
 import styles from './Info.module.css';
 
-const Daily = ({ timezone, data }) => {
-    console.log(data);
+/* TODO: What are prop validations? */
 
+const Daily = ({ timezone, data }) => {
     const list = data.map((element) => {
         const day = new Date((element.dt + timezone) * 1000).toLocaleString(
             'en-us',
