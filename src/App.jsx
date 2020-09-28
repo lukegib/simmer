@@ -1,7 +1,6 @@
 import React from 'react';
 import Location from './Location';
 import Weather from './Weather';
-import Info from './Info';
 import Loading from './Loading';
 import Error from './Error';
 import styles from './App.module.css';
@@ -42,6 +41,7 @@ class App extends React.Component {
             },
             isLoading: false,
             hasError: false,
+            errorCode: 400,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -52,73 +52,95 @@ class App extends React.Component {
         this.getWeather();
     }
 
-    /* TODO: break this function up */
-
-    /* TODO: Determine a way to catch the errors */
-
     async getWeather() {
         const apiKey = '46cdd346f210fb124c900b5979411685';
-        const googleApiKey = 'pk.1d549a3ebb241d6d4a4c19e14848a250';
         const units = 'metric';
 
         this.setState({ isLoading: true });
+        await this.getCoords();
 
-        const response2 = await fetch(
-            `https://eu1.locationiq.com/v1/search.php?key=${googleApiKey}&format=json&q=${this.state.location}`
-        );
+        // eslint-disable-next-line react/destructuring-assignment
+        if (!this.state.hasError) {
+            const response = await fetch(
+                `https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.coords.lat}&lon=${this.state.coords.lon}&exclude=minutely&appid=${apiKey}&units=${units}`
+            );
 
-        const data2 = await response2.json();
+            const data = await response.json();
 
-        console.log(data2.cod);
+            if (response.ok) {
+                this.setBackground(data.current.weather[0].icon);
 
-        this.setState(() => {
-            return {
-                coords: {
-                    lat: data2[0].lat,
-                    lon: data2[0].lon,
-                },
-            };
-        });
+                this.setState(() => {
+                    return {
+                        timezone: data.timezone_offset,
+                        weather: {
+                            main: {
+                                temp: Math.floor(data.current.temp),
+                                type: data.current.weather[0].main,
+                                icon_code: data.current.weather[0].icon,
+                            },
+                            current: {
+                                clouds: data.current.clouds,
+                                feels_like: Math.floor(data.current.feels_like),
+                                humidity: data.current.humidity,
+                                pressure: data.current.pressure,
+                                uvi: Math.floor(data.current.uvi),
+                                wind_dir: this.degreesToText(
+                                    data.current.wind_deg
+                                ),
+                                wind_speed: Math.floor(
+                                    data.current.wind_speed * 3.6
+                                ),
+                                sunrise: data.current.sunrise,
+                                sunset: data.current.sunset,
+                            },
+                            daily: data.daily.slice(1, 8),
+                            hourly: data.hourly.slice(1, 25),
+                        },
+                        isLoading: false,
+                        hasError: false,
+                    };
+                });
+            } else {
+                this.setState({
+                    background: '#B72020',
+                    isLoading: false,
+                    hasError: true,
+                    errorCode: response.status,
+                });
+            }
+        }
+    }
+
+    async getCoords() {
+        const apiKey = 'pk.1d549a3ebb241d6d4a4c19e14848a250';
+        const { location } = this.state;
 
         const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.coords.lat}&lon=${this.state.coords.lon}&exclude=minutely&appid=${apiKey}&units=${units}`
+            `https://eu1.locationiq.com/v1/search.php?key=${apiKey}&format=json&q=${location}`
         );
 
         const data = await response.json();
 
-        console.log(data);
-
-        this.setBackground(data.current.weather[0].icon);
-
-        this.setState(() => {
-            return {
-                timezone: data.timezone_offset,
-                weather: {
-                    main: {
-                        temp: Math.floor(data.current.temp),
-                        type: data.current.weather[0].main,
-                        icon_code: data.current.weather[0].icon,
+        if (response.ok) {
+            this.setState(() => {
+                return {
+                    coords: {
+                        lat: data[0].lat,
+                        lon: data[0].lon,
                     },
-                    current: {
-                        clouds: data.current.clouds,
-                        feels_like: Math.floor(data.current.feels_like),
-                        humidity: data.current.humidity,
-                        pressure: data.current.pressure,
-                        uvi: Math.floor(data.current.uvi),
-                        wind_dir: this.degreesToText(data.current.wind_deg),
-                        wind_speed: Math.floor(data.current.wind_speed * 3.6),
-                        sunrise: data.current.sunrise,
-                        sunset: data.current.sunset,
-                    },
-                    daily: data.daily.slice(1, 8),
-                    hourly: data.hourly.slice(1, 25),
-                },
+                    hasError: false,
+                };
+            });
+        } else {
+            this.setState({
+                background: '#B72020',
                 isLoading: false,
-            };
-        });
+                hasError: true,
+                errorCode: response.status,
+            });
+        }
     }
-
-    /* TODO: fix my prettier extension so it works with eslint on switch */
 
     setBackground(icon) {
         let background = '';
@@ -201,22 +223,21 @@ class App extends React.Component {
             timezone,
             weather,
             isLoading,
+            hasError,
+            errorCode,
         } = this.state;
 
-        /* TODO: 
-            ### Show error page is anything comes up
-            ### Move Weather and Info into a component
-            ### Rename components
-        */
-
-        //
-        // error code
-        // 400 - city name missing / invalid
-        // 403 - access restricted
-        // 404 - no location found
-        // 429 - too many requests
-        // 500 - server error, try again
-        //
+        const display = hasError ? (
+            <Error code={errorCode} />
+        ) : (
+            <Weather
+                timezone={timezone}
+                main={weather.main}
+                current={weather.current}
+                hourly={weather.hourly}
+                daily={weather.daily}
+            />
+        );
 
         return (
             <div className={styles.app_container} style={{ background }}>
@@ -226,19 +247,7 @@ class App extends React.Component {
                     handleBlur={this.handleBlur}
                 />
 
-                {isLoading ? (
-                    <Loading />
-                ) : (
-                    <div>
-                        <Weather data={weather.main} />
-                        <Info
-                            timezone={timezone}
-                            current={weather.current}
-                            hourly={weather.hourly}
-                            daily={weather.daily}
-                        />
-                    </div>
-                )}
+                {isLoading ? <Loading /> : display}
             </div>
         );
     }

@@ -15,7 +15,7 @@ const Location = ({ location, handleChange, handleBlur }) => {
                     <div
                         className={styles.underline}
                         style={{
-                            width: location.length + 'ch', // TODO:
+                            width: `${location.length}ch`,
                         }}
                     />
                 </div>

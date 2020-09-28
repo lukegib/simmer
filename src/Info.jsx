@@ -9,12 +9,7 @@ import Daily from './Daily';
 const Info = ({ timezone, current, hourly, daily }) => {
     return (
         <div className={styles.sliderContainer}>
-            <Slider
-                dots={true} // TODO:
-                arrows={false}
-                infinite={false}
-                slidesToShow={1}
-            >
+            <Slider dots arrows={false} infinite={false} slidesToShow={1}>
                 <Now timezone={timezone} data={current} />
                 <Hourly timezone={timezone} data={hourly} />
                 <Daily timezone={timezone} data={daily} />

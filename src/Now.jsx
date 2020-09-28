@@ -38,7 +38,7 @@ const Now = ({ timezone, data }) => {
                     {`${sunrise.getUTCHours()}:${
                         sunrise.getUTCMinutes() > 9
                             ? sunrise.getUTCMinutes()
-                            : '0' + sunrise.getUTCMinutes()
+                            : `0${sunrise.getUTCMinutes()}`
                     }`}
                 </div>
             </div>
@@ -48,7 +48,7 @@ const Now = ({ timezone, data }) => {
                     {`${sunset.getUTCHours()}:${
                         sunset.getUTCMinutes() > 9
                             ? sunset.getUTCMinutes()
-                            : '0' + sunset.getUTCMinutes()
+                            : `0${sunrise.getUTCMinutes()}`
                     }`}
                 </div>
             </div>
