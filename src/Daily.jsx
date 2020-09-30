@@ -1,9 +1,7 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Icon from './Icon';
 import styles from './Info.module.css';
-
-/* TODO: What are prop validations? */
 
 const Daily = ({ timezone, data }) => {
     const list = data.map((element) => {
@@ -30,6 +28,11 @@ const Daily = ({ timezone, data }) => {
     });
 
     return <div className={styles.weatherDataList}>{list}</div>;
+};
+
+Daily.propTypes = {
+    timezone: PropTypes.number.isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Daily;

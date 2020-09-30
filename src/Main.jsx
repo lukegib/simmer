@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Main.module.css';
 
 import Icon from './Icon';
@@ -18,6 +19,14 @@ const Main = ({ data }) => {
             <div className={styles.title}>{data.type}</div>
         </div>
     );
+};
+
+Main.propTypes = {
+    data: PropTypes.shape({
+        temp: PropTypes.number,
+        type: PropTypes.string,
+        icon_code: PropTypes.string,
+    }).isRequired,
 };
 
 export default Main;

@@ -1,9 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Icon from './Icon';
 import styles from './Info.module.css';
 
 const Hourly = ({ timezone, data }) => {
+    /* TODO: */
     const day = new Date().getDay();
     let today = [];
     let tomorrow = [];
@@ -53,6 +54,11 @@ const Hourly = ({ timezone, data }) => {
             </div>
         </div>
     );
+};
+
+Hourly.propTypes = {
+    timezone: PropTypes.number.isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Hourly;

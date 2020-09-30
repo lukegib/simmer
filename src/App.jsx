@@ -21,9 +21,9 @@ class App extends React.Component {
             timezone: 3600,
             weather: {
                 main: {
-                    temp: '-',
-                    type: '-',
-                    icon_code: '-',
+                    temp: 0,
+                    type: '',
+                    icon_code: '',
                 },
                 current: {
                     clouds: 0,
@@ -32,9 +32,10 @@ class App extends React.Component {
                     pressure: 0,
                     uvi: 0,
                     wind_deg: 0,
+                    wind_dir: '',
                     wind_speed: 0,
-                    sunrise: '',
-                    sunset: '',
+                    sunrise: 0,
+                    sunset: 0,
                 },
                 daily: [],
                 hourly: [],
@@ -146,17 +147,14 @@ class App extends React.Component {
         let background = '';
 
         switch (icon) {
+            default:
             case '01d':
+            case '02d':
                 background = '#2FB0E8';
                 break;
             case '01n':
-                background = 'black';
-                break;
-            case '02d':
-                background = '#50c3f4';
-                break;
             case '02n':
-                background = '#373737';
+                background = 'black';
                 break;
             case '03d':
             case '03n':
@@ -164,17 +162,23 @@ class App extends React.Component {
             case '04n':
                 background = '#6193A9';
                 break;
+            case '09d':
+            case '09n':
+            case '10d':
+            case '10n':
+            case '11d':
+            case '11n':
+                background = '#445054';
+                break;
             case '13d':
+                background = '#47baeb';
+                break;
             case '13n':
-                background = '#83d2f5';
+                background = '#395667';
                 break;
             case '50d':
             case '50n':
-                background =
-                    'linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(131,131,144,1) 0%, rgba(194,209,212,1) 100%)';
-                break;
-            default:
-                background = '#2fb0e8';
+                background = '#888';
                 break;
         }
 

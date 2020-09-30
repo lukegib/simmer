@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Info.module.css';
 
 // TODO: clean this up
 
-const Now = ({ timezone, data }) => {
+const Current = ({ timezone, data }) => {
     const sunrise = new Date((data.sunrise + timezone) * 1000);
     const sunset = new Date((data.sunset + timezone) * 1000);
 
@@ -56,4 +57,19 @@ const Now = ({ timezone, data }) => {
     );
 };
 
-export default Now;
+Current.propTypes = {
+    timezone: PropTypes.number.isRequired,
+    data: PropTypes.shape({
+        clouds: PropTypes.number,
+        feels_like: PropTypes.number,
+        humidity: PropTypes.number,
+        pressure: PropTypes.number,
+        sunrise: PropTypes.number,
+        sunset: PropTypes.number,
+        uvi: PropTypes.number,
+        wind_dir: PropTypes.string,
+        wind_speed: PropTypes.number,
+    }).isRequired,
+};
+
+export default Current;

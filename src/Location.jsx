@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Location.module.css';
 
 const Location = ({ location, handleChange, handleBlur }) => {
@@ -22,6 +23,12 @@ const Location = ({ location, handleChange, handleBlur }) => {
             </div>
         </div>
     );
+};
+
+Location.propTypes = {
+    location: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleBlur: PropTypes.func.isRequired,
 };
 
 export default Location;
