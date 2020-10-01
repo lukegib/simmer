@@ -12,3 +12,4 @@
 -   Change the loading icon
 -   Add suitable alt descriptions to icon images
 -   Add comments
+-   Move Slick-Slider styles out of index.html and into a separate stylesheet
