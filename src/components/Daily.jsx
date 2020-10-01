@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
-import styles from './Info.module.css';
+import styles from './Menu.module.css';
+
+import Icon from './misc/Icon';
 
 const Daily = ({ timezone, data }) => {
     const list = data.map((element) => {

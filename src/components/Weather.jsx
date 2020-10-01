@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Main from './Main';
-import Info from './Info';
+import Menu from './Menu';
 
 const Weather = ({ timezone, main, current, hourly, daily }) => {
     return (
         <div>
             <Main data={main} />
-            <Info
+            <Menu
                 timezone={timezone}
                 current={current}
                 hourly={hourly}

@@ -1,11 +1,10 @@
 import React from 'react';
-import Location from './Location';
-import Weather from './Weather';
-import Loading from './Loading';
-import Error from './Error';
 import styles from './App.module.css';
 
-/* TODO: Find out a suitable filing system */
+import Location from './components/Location';
+import Weather from './components/Weather';
+import Loading from './components/misc/Loading';
+import Error from './components/misc/Error';
 
 class App extends React.Component {
     constructor(props) {
@@ -62,8 +61,11 @@ class App extends React.Component {
 
         // eslint-disable-next-line react/destructuring-assignment
         if (!this.state.hasError) {
+            // eslint-disable-next-line react/destructuring-assignment
+            const { lat, lon } = this.state.coords;
+
             const response = await fetch(
-                `https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.coords.lat}&lon=${this.state.coords.lon}&exclude=minutely&appid=${apiKey}&units=${units}`
+                `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${apiKey}&units=${units}`
             );
 
             const data = await response.json();
@@ -86,6 +88,7 @@ class App extends React.Component {
                                 humidity: data.current.humidity,
                                 pressure: data.current.pressure,
                                 uvi: Math.floor(data.current.uvi),
+                                wind_deg: data.current.wind_deg,
                                 wind_dir: this.degreesToText(
                                     data.current.wind_deg
                                 ),
@@ -193,8 +196,7 @@ class App extends React.Component {
         this.getWeather();
     }
 
-    /* TODO: Find out what this eslint errors means */
-
+    // eslint-disable-next-line class-methods-use-this
     degreesToText(degrees) {
         let val = degrees / 22.5 + 0.5;
         const dirs = [

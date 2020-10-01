@@ -1,18 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Error.module.css';
-import penguin from './assets/penguin.png';
 
-/* TODO: Fix this so that it displays the message and code */
-
-//
-// error code
-// 400 - city name missing / invalid
-// 403 - access restricted
-// 404 - no location found
-// 429 - too many requests
-// 500 - server error, try again
-//
+import penguin from '../../assets/penguin.png';
 
 const Error = ({ code }) => {
     let desc;

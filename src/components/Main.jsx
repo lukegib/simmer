@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Main.module.css';
 
-import Icon from './Icon';
+import Icon from './misc/Icon';
 
 const Main = ({ data }) => {
     return (

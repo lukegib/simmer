@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Info.module.css';
-
-// TODO: clean this up
+import styles from './Menu.module.css';
 
 const Current = ({ timezone, data }) => {
     const sunrise = new Date((data.sunrise + timezone) * 1000);
@@ -12,22 +10,22 @@ const Current = ({ timezone, data }) => {
         <div className={styles.weatherDataList}>
             <div className={styles.row}>
                 <div className={styles.heading}>Feels Like</div>
-                <div className={styles.data}>{data.feels_like}°</div>
+                <div className={styles.data}>{`${data.feels_like}°`}</div>
             </div>
             <div className={styles.row}>
                 <div className={styles.heading}>Wind</div>
                 <div className={styles.data}>
-                    <span className={styles.direction}>{data.wind_dir}</span>{' '}
-                    {data.wind_speed} km/hr
+                    <span className={styles.direction}>{data.wind_dir}</span>
+                    {` ${data.wind_speed} km/hr`}
                 </div>
             </div>
             <div className={styles.row}>
                 <div className={styles.heading}>Pressure</div>
-                <div className={styles.data}>{data.pressure} hPa</div>
+                <div className={styles.data}>{`${data.pressure} hPa`}</div>
             </div>
             <div className={styles.row}>
                 <div className={styles.heading}>Humidity</div>
-                <div className={styles.data}>{data.humidity}%</div>
+                <div className={styles.data}>{`${data.humidity}%`}</div>
             </div>
             <div className={styles.row}>
                 <div className={styles.heading}>UV Index</div>

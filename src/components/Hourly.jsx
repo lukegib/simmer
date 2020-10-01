@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
-import styles from './Info.module.css';
+import styles from './Menu.module.css';
+
+import Icon from './misc/Icon';
 
 const Hourly = ({ timezone, data }) => {
-    /* TODO: */
+    /* FIXME: Change to get day in current timezone */
     const day = new Date().getDay();
-    let today = [];
-    let tomorrow = [];
+    const today = [];
+    const tomorrow = [];
 
     data.forEach((element) => {
         const elementDay = new Date((element.dt + timezone) * 1000).getUTCDay();

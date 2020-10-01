@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import styles from './Info.module.css';
+import styles from './Menu.module.css';
 
 import Current from './Current';
 import Hourly from './Hourly';
 import Daily from './Daily';
 
-const Info = ({ timezone, current, hourly, daily }) => {
+const Menu = ({ timezone, current, hourly, daily }) => {
     return (
         <div className={styles.sliderContainer}>
             <Slider dots arrows={false} infinite={false} slidesToShow={1}>
@@ -19,7 +19,7 @@ const Info = ({ timezone, current, hourly, daily }) => {
     );
 };
 
-Info.propTypes = {
+Menu.propTypes = {
     timezone: PropTypes.number.isRequired,
     current: PropTypes.shape({
         clouds: PropTypes.number,
@@ -36,4 +36,4 @@ Info.propTypes = {
     daily: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default Info;
+export default Menu;

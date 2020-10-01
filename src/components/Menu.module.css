@@ -10,10 +10,6 @@
     height: 53vh;
 }
 
-.sliderContainer {
-    /*height: 55vh;*/
-}
-
 .row {
     display: flex;
     justify-content: space-between;
@@ -52,7 +48,6 @@
     font-size: 16px;
 }
 
-/* only for hourly */
 .weatherData {
     display: flex;
     justify-content: space-between;
@@ -86,7 +81,7 @@
 
 .hourItem {
     width: 100%;
-    margin: 17px 0px; /* was 22px for Now section */
+    margin: 17px 0px;
     min-height: 30px;
     font-weight: 300;
     display: grid;
