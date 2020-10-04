@@ -25,7 +25,10 @@ const Hourly = ({ timezone, data }) => {
                 <div className={styles.hour}>
                     {new Date((element.dt + timezone) * 1000).getUTCHours()}
                 </div>
-                <Icon code={element.weather[0].icon} />
+                <Icon
+                    code={element.weather[0].icon}
+                    desc={element.weather[0].main}
+                />
                 <div className={styles.temp}>{Math.floor(element.temp)}</div>
             </div>
         );
@@ -37,7 +40,10 @@ const Hourly = ({ timezone, data }) => {
                 <div className={styles.hour}>
                     {new Date((element.dt + timezone) * 1000).getUTCHours()}
                 </div>
-                <Icon code={element.weather[0].icon} />
+                <Icon
+                    code={element.weather[0].icon}
+                    desc={element.weather[0].main}
+                />
                 <div className={styles.temp}>{Math.floor(element.temp)}</div>
             </div>
         );

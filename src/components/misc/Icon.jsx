@@ -13,9 +13,7 @@ import thunder from '../../assets/thunder.png';
 import snow from '../../assets/snow.png';
 import mist from '../../assets/mist.png';
 
-const Icon = ({ code }) => {
-    const desc = 'icon'; // TODO:
-
+const Icon = ({ code, desc }) => {
     switch (code) {
         // clear day
         case '01d':
@@ -64,6 +62,7 @@ const Icon = ({ code }) => {
 
 Icon.propTypes = {
     code: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
 };
 
 export default Icon;

@@ -8,7 +8,7 @@ const Main = ({ data }) => {
     return (
         <div className={styles.weatherContainer}>
             <div className={styles.weatherIcon}>
-                <Icon code={data.icon_code} />
+                <Icon code={data.icon_code} desc={data.type} />
             </div>
             <div className={styles.temp}>
                 <div className={styles.degrees}>

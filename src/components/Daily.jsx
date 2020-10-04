@@ -18,7 +18,10 @@ const Daily = ({ timezone, data }) => {
                 <div className={styles.heading}>{day}</div>
                 <div className={styles.data}>
                     <div className={styles.icon}>
-                        <Icon code={element.weather[0].icon} />
+                        <Icon
+                            code={element.weather[0].icon}
+                            desc={element.weather[0].main}
+                        />
                         <div className="temp" style={{ fontSize: '16px' }}>
                             {Math.floor(element.temp.day)}
                         </div>
