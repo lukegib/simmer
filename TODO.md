@@ -7,7 +7,7 @@
 
 #### Minors
 
--   Bug fix: Daily component is retrieving the currrent day in the users region, not the one specified
 -   Move the Hourly menu so that it is in line with both Current and Daily ones
 -   Add comments
 -   Move Slick-Slider styles out of index.html and into a separate stylesheet
+-   Add placeholders for empty areas in hourly lists

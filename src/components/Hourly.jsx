@@ -5,10 +5,12 @@ import styles from './Menu.module.css';
 import Icon from './misc/Icon';
 
 const Hourly = ({ timezone, data }) => {
-    /* FIXME: Change to get day in current timezone */
-    const day = new Date().getDay();
     const today = [];
     const tomorrow = [];
+    const day =
+        data[0] == null
+            ? new Date().getDay()
+            : new Date((data[0].dt - 3600 + timezone) * 1000).getUTCDay(); // day for current hour (3600 seconds = 1 hour)
 
     data.forEach((element) => {
         const elementDay = new Date((element.dt + timezone) * 1000).getUTCDay();
